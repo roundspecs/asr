@@ -10,6 +10,9 @@ def cli():
     pass
 
 cli.add_command(start)
+cli.add_command(stop)
+cli.add_command(todos)
+cli.add_command(add)
 
 if __name__ == "__main__":
     cli()

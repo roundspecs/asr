@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Tuple
 from datetime import datetime
 from typing_extensions import Self
 
+DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 class Task:
     def __init__(
@@ -25,8 +26,8 @@ class Task:
             {
                 "time_frames": [
                     (
-                        i.strftime("%Y-%m-%d %H:%M:%S"),
-                        j.strftime("%Y-%m-%d %H:%M:%S") if j else None,
+                        i.strftime(DATETIME_FORMAT),
+                        j.strftime(DATETIME_FORMAT) if j else None,
                     )
                     for i, j in self.time_frames
                 ],
@@ -41,8 +42,8 @@ class Task:
             {
                 "time_frames": [
                     (
-                        datetime.strptime(i, "%Y-%m-%d %H:%M:%S"),
-                        datetime.strptime(j, "%Y-%m-%d %H:%M:%S") if j else None,
+                        datetime.strptime(i, DATETIME_FORMAT),
+                        datetime.strptime(j, DATETIME_FORMAT) if j else None,
                     )
                     for i, j in data["time_frames"]
                 ],

@@ -9,6 +9,9 @@ Added task:
   complete-chapter-one
 ```
 ```
+$ asr task add
+List of tasks
+  ☐ complete-chapter-one
 $ asr task add complete-chapter-one/read-intro
 Added task:
   ☐ complete-chapter-one
@@ -34,15 +37,15 @@ Removed task:
 Don't remember the task name? We got you.
 ```
 $ asr task remove
-List of subtasks
+List of tasks
   ☐ complete-chapter-one
   ☐ task1
 $ asr task remove task1/
-List of subtasks
+List of tasks
   🗹 task1.1
   ☐ task1.2
 $ asr task remove task1/task1.1.1+
-List of subtasks
+List of tasks
   ☐ task1.1.2
 ```
 ### Start working on a subtask
@@ -52,7 +55,9 @@ Started task at 08:11 PM:
   ☐ complete-chapter-one
   └──☐ read-intro
 ```
-Note: Only tasks with no children can be started
+Note:
+- Does not support emmet
+- Only tasks with no children can be started
 ### Stop working
 ```
 $ asr task stop

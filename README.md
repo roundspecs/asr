@@ -7,7 +7,7 @@ A time tracking and journaling tool
   $ asr task add complete-chapter-one
   ```
 ### Add subtask
-  Add task like [emmet](https://emmet.io/) except # and . does not represent id and class\
+  Add task like [emmet](https://emmet.io/) except # and . does not represent id and class, {} instead of (), / instead of >
   ```bash
   $ asr task add complete-chapter-one/read-intro
   ```

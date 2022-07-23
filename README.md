@@ -29,28 +29,28 @@ Added task:
 ```
 ### Remove tasks
 ```
-$ asr task remove complete-chapter-one/read-intro
+$ asr task rm complete-chapter-one/read-intro
 Removed task:
   ☐ complete-chapter-one
   └──🗹 read-intro
 ```
 Don't remember the task name? We got you.
 ```
-$ asr task remove
+$ asr task rm
 List of tasks
   ☐ complete-chapter-one
   ☐ task1
-$ asr task remove task1/
+$ asr task rm task1/
 List of tasks
   🗹 task1.1
   ☐ task1.2
-$ asr task remove task1/task1.1.1+
+$ asr task rm task1/task1.1.1+
 List of tasks
   ☐ task1.1.2
 ```
 ### Start working on a subtask
 ```
-$ asr task start complete-chapter-one/read-intro
+$ asr task do complete-chapter-one/read-intro
 Started task at 08:11 PM:
   ☐ complete-chapter-one
   └──☐ read-intro

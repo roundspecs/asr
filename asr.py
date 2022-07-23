@@ -17,6 +17,7 @@ task.add_command(add)
 
 @click.group()
 def main():
+    """A time tracking and journaling tool"""
     pass
 
 main.add_command(task)

@@ -3,27 +3,45 @@ A time tracking and journaling tool
 
 ## Usage
 ### Add task
-  `$ asr task add complete-chapter-one`
+  ```bash
+  $ asr task add complete-chapter-one
+  ```
 ### Add subtask
-  `$ asr task add complete-chapter-one/read-intro`\
-  `$ asr task add make-popcorn/(buy-instant-popcorn-packet/(go-to-shop+ask-for-popcorn+pay-bill+come-home))+turn-on-oven+put-the-packet-inside-oven+wait-for-2-min+take-it-out`\
-  The above will create:
-  - [ ] make-popcorn
-    - [ ] buy-instant-popcorn-packet
-      - [ ] go-to-shop
-      - [ ] ask-for-popcorn
-      - [ ] pay-bill
-      - [ ] come-home
-    - [ ] turn-on-oven
-    - [ ] put-the-packet-inside-oven
-    - [ ] wait-for-2-min+take-it-out
+  Add task like [emmet](https://emmet.io/) except # and . does not represent id and class\
+  ```bash
+  $ asr task add complete-chapter-one>read-intro
+  ```
+  ```bash
+  $ asr task add task1>(task1.1>(task1.1.1+task1.1.2))+task1.2
+  ```
 ### Remove tasks or subtasks
-  `$ asr task remove complete-chapter-one/read-intro`\
-  Note: Remove multiple tasks by separating them with sapce
+  ```bash
+  $ asr task remove complete-chapter-one>read-intro
+  ```
+  Don't remember the task name? We got you.
+  ```bash
+  $ asr task remove
+  List of subtasks
+    complete-chapter-one
+    task1
+  $ asr task remove task1>
+  List of subtasks
+    task1.1
+    task1.2
+  $ asr task remove task1>task1.1.1+
+  List of subtasks
+    task1.1.2
+  ```
 ### Start working on a subtask
-  `$ asr start complete-chapter-one/read-intro`\
+  ```bash
+  $ asr start complete-chapter-one>read-intro
+  ```
   Note: Only tasks with no children can be started
 ### Stop working
-  `$ asr stop`
+  ```bash
+  $ asr stop
+  ```
 ### See what you are working on
-  `$ asr status`
+  ```bash
+  $ asr status
+  ```

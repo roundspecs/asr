@@ -2,19 +2,18 @@
 A time tracking and journaling tool
 
 ## Usage
-### Add task
+### Add tasks
 ```shell
 $ asr task add complete-chapter-one
 ```
-### Add subtask
-Add task like [emmet](https://emmet.io/) except # and . does not represent id and class, {} instead of (), / instead of >
 ```shell
 $ asr task add complete-chapter-one/read-intro
 ```
+Add task like [emmet](https://emmet.io/) except {} instead of (), / instead of >
 ```shell
 $ asr task add task1/{task1.1/{task1.1.1+task1.1.2}}+task1.2
 ```
-### Remove tasks or subtasks
+### Remove tasks
 ```shell
 $ asr task remove complete-chapter-one/read-intro
 ```
@@ -44,4 +43,5 @@ $ asr stop
 ### See what you are working on
 ```shell
 $ asr status
+Working on complete-chapter-one/read-intro for 2 hours
 ```

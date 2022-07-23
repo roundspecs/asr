@@ -10,11 +10,13 @@ class Task:
         parent: Self,
         children: List[Self],
         time_frames=None,
+        isDone=False,
     ) -> None:
         self.name = name
         self.parent: Task | None = parent
         self.children: List[Task] = children
         self.time_frames: List[Tuple[datetime, datetime | None]] = time_frames or []
+        self.isDone=isDone
 
     @property
     def to_json_dict(self) -> Dict[str, Any]:

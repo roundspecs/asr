@@ -1,8 +1,10 @@
 import click
+from models.task_list import TaskList
 
 @click.command()
-@click.argument('task_path')
-def add(task_path: str):
+@click.argument('emmet_abbr')
+def add(emmet_abbr: str):
     """Add a new task"""
-    task_path = task_path.strip('/').split('/')
-    click.echo(task_path)
+    task_list = TaskList.from_json_file()
+    added_tasks = task_list.add_task_as_emmet(emmet_abbr)
+    # TODO: print added tasks

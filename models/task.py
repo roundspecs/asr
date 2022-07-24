@@ -9,16 +9,16 @@ class Task:
     def __init__(
         self,
         name: str,
-        parent: Self,
-        children: List[Self],
-        time_frames=None,
-        isDone=False,
+        parent: Self | None = None,
+        children: List[Self] | None = None,
+        time_frames: List[Tuple[datetime, datetime | None]] = None,
+        isDone: bool = False,
     ) -> None:
         self.name = name
         self.parent: Task | None = parent
-        self.children: List[Task] = children
+        self.children: List[Task] = children or []
         self.time_frames: List[Tuple[datetime, datetime | None]] = time_frames or []
-        self.isDone = isDone
+        self.isDone: bool = isDone
 
     @property
     def to_py_obj(self) -> Dict[str, Any]:

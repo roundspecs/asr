@@ -1,2 +1,4 @@
-click
+typer
+rich
 typing_extensions
+shellingham

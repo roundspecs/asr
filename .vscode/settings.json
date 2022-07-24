@@ -1,7 +1,8 @@
 {
   "cSpell.words": [
     "journaling",
-    "todos"
+    "todos",
+    "typer"
   ],
   "files.exclude": {
     ".gitignore": true,

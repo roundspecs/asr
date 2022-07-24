@@ -1,6 +1,7 @@
 import json
 import os
 from typing import List
+from typing_extensions import Self
 from models.task import Task
 
 
@@ -31,6 +32,9 @@ class TaskList:
         with open(self.filepath, 'w') as file:
             json.dump(self.to_py_obj, file)
     
-    def add_task_as_emmet(self, emmet_abbr: str):
-        #TODO
-        pass
+    def add_task_as_emmet(self, emmet_abbr: str) -> Self:
+        self.tasks.append(Task(emmet_abbr))
+        added_task_list = TaskList([Task(emmet_abbr)])
+        self.save()
+        return added_task_list
+        

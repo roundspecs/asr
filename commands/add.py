@@ -6,5 +6,5 @@ from models.task_list import TaskList
 def add(emmet_abbr: str):
     """Add a new task"""
     task_list = TaskList.from_json_file()
-    added_tasks = task_list.add_task_as_emmet(emmet_abbr)
+    added_task_list = task_list.add_task_as_emmet(emmet_abbr)
     # TODO: print added tasks

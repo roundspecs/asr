@@ -1,23 +1,18 @@
 import click
 
-from commands.start import start
+from commands.do import do
 from commands.stop import stop
-from commands.todos import todos
+from commands.ls import ls
 from commands.add import add
 
-@click.group()
-def task():
-    """Endpoint to add/remove/start/stop task"""
-    pass
-
-task.add_command(start)
-task.add_command(stop)
-task.add_command(todos)
-task.add_command(add)
 
 @click.group()
 def main():
     """A time tracking and journaling tool"""
     pass
 
-main.add_command(task)
+
+main.add_command(do)
+main.add_command(stop)
+main.add_command(ls)
+main.add_command(add)

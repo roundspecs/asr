@@ -43,3 +43,6 @@ class TaskList:
         added_task_list = TaskList([Task(emmet_abbr)])
         self.save()
         return added_task_list
+
+    def tree_str(self):
+        return "\n".join([t.tree_str() for t in self.tasks])

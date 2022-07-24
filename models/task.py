@@ -52,3 +52,6 @@ class Task:
             }
         )
         return cls(**data)
+
+    def tree_str(self):
+        return f"{'🗹' if self.isDone else '☐'} {self.name}"

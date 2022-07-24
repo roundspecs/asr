@@ -1,5 +1,5 @@
 import datetime
-from typing import List
+from typing import Dict
 from typing_extensions import Self
 
 TIME_FORMAT = "%H:%M:%S"
@@ -12,7 +12,7 @@ class Activity:
         self.end = end
 
     @property
-    def to_py_obj(self) -> List[str | int]:
+    def to_py_obj(self) -> Dict[str, str]:
         data = self.__dict__.copy()
         data.update(
             {
@@ -24,7 +24,7 @@ class Activity:
         return data
 
     @classmethod
-    def from_py_obj(cls, data: List[str | int]) -> Self:
+    def from_py_obj(cls, data: Dict[str, str]) -> Self:
         data.update(
             {
                 "start": datetime.datetime.strptime(data["start"], TIME_FORMAT).time(),

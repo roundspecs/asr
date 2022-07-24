@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 from typing import List
@@ -24,7 +25,7 @@ class TaskList:
         return cls(data)
 
     @classmethod
-    def from_json_file(cls):
+    def load(cls):
         if not os.path.exists(DB_DIR):
             os.makedirs(DB_DIR)
         if not os.path.exists(cls.filepath):
@@ -51,3 +52,16 @@ class TaskList:
         self.tasks = [t for t in self.tasks if t.name != emmet_abbr]
         self.save()
         return TaskList([Task(emmet_abbr)])
+
+    def __index_from_task_path(self, task_path: str):
+        return next(i for i, t in enumerate(self.tasks) if t.name == task_path)
+
+    def start_task(self, task_path: str, start_time: datetime.datetime):
+        index = self.__index_from_task_path(task_path)
+        self.tasks[index].time_frames.append((start_time, None))
+        self.save()
+
+    def stop_task(self, task_path: str, stop_time: datetime.datetime):
+        index = self.__index_from_task_path(task_path)
+        self.tasks[index].time_frames[-1][1] = stop_time
+        self.save()

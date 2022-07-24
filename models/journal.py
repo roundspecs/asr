@@ -4,6 +4,7 @@ import os
 from typing import Any, Dict, List
 from models.activity import Activity
 from models.task import Task
+from models.task_list import TaskList
 
 DATE_FORMAT = "%Y-%m-%d"
 DB_DIR = "/home/seven89/Documents/asr-db"
@@ -27,7 +28,7 @@ class Journal:
     @classmethod
     def from_py_obj(cls, data: Dict[str, Any]):
         data["activities"] = [Activity.from_py_obj(d) for d in data["activities"]]
-        data["date"] = datetime.strptime(data["date"], DATE_FORMAT)
+        data["date"] = datetime.datetime.strptime(data["date"], DATE_FORMAT)
         return cls(**data)
 
     @classmethod
@@ -37,14 +38,14 @@ class Journal:
             os.makedirs(month_dir)
 
     @classmethod
-    def load(cls, date: datetime.date):
+    def load(cls, date: datetime.date = datetime.datetime.now()):
         filepath = os.path.join(
             DB_DIR, "journal", str(date.year), str(date.month), f"{date.day}.json"
         )
         cls.create_month_dir_if_does_not_exist(date)
-        if not os.path.exists(cls.filepath):
-            with open(cls.filepath, "w") as file:
-                json.dump([], file)
+        if not os.path.exists(filepath):
+            with open(filepath, "w") as file:
+                json.dump({"date": date.strftime(DATE_FORMAT), "activities": []}, file)
         with open(filepath, "r") as file:
             data = json.load(file)
         return cls.from_py_obj(data)
@@ -54,18 +55,21 @@ class Journal:
         with open(self.filepath, "w") as file:
             json.dump(self.to_py_obj, file)
 
-    def start_task(self, task: Task):
-        activity = Activity(
-            name=task.path(),
-            start=datetime.datetime.now().time(),
-        )
-        #TODO: set task time frame
+    def start_task(self, task_path: str):
+        now = datetime.datetime.now()
+        activity = Activity(name=task_path, start=now.time())
+        task_list = TaskList.load()
+        task_list.start_task(task_path, now)
         self.activities.append(activity)
         self.save()
-    
-    def stop_task(self, task: Task):
+
+    def stop_task(self):
         if self.activities[-1].end == None:
-            self.activities[-1].end = datetime.datetime.now().time()
+            now = datetime.datetime.now()
+            task_list = TaskList.load()
+            task_path = self.activities[-1].name
+            task_list.stop_task(task_path, now)
+            self.activities[-1].end = now.time()
             self.save()
         else:
-            raise Exception #TODO: better way to handle this
+            raise Exception  # TODO: better way to handle this

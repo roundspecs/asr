@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 from datetime import datetime
 from typing_extensions import Self
 
@@ -11,13 +11,13 @@ class Task:
         name: str,
         parent: Self | None = None,
         children: List[Self] | None = None,
-        time_frames: List[Tuple[datetime, datetime | None]] = None,
+        time_frames: List[List[datetime | None]] = None,
         isDone: bool = False,
     ) -> None:
         self.name = name
         self.parent: Task | None = parent
         self.children: List[Task] = children or []
-        self.time_frames: List[Tuple[datetime, datetime | None]] = time_frames or []
+        self.time_frames: List[List[datetime | None]] = time_frames or []
         self.isDone: bool = isDone
 
     @property
@@ -42,10 +42,10 @@ class Task:
         data.update(
             {
                 "time_frames": [
-                    (
+                    [
                         datetime.strptime(i, DATETIME_FORMAT),
                         datetime.strptime(j, DATETIME_FORMAT) if j else None,
-                    )
+                    ]
                     for i, j in data["time_frames"]
                 ],
                 "children": [cls.from_py_obj(i) for i in data["children"]],
@@ -55,7 +55,7 @@ class Task:
 
     def tree_str(self):
         return f"{'🗹' if self.isDone else '☐'} {self.name}"
-    
+
     def path(self):
         if self.parent == None:
             return self.name

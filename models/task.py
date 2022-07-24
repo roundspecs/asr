@@ -4,6 +4,7 @@ from typing_extensions import Self
 
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
+
 class Task:
     def __init__(
         self,
@@ -17,10 +18,10 @@ class Task:
         self.parent: Task | None = parent
         self.children: List[Task] = children
         self.time_frames: List[Tuple[datetime, datetime | None]] = time_frames or []
-        self.isDone=isDone
+        self.isDone = isDone
 
     @property
-    def to_json_dict(self) -> Dict[str, Any]:
+    def to_py_obj(self) -> Dict[str, Any]:
         data = self.__dict__.copy()
         data.update(
             {
@@ -31,13 +32,13 @@ class Task:
                     )
                     for i, j in self.time_frames
                 ],
-                "children": [i.to_json_dict for i in self.children]
+                "children": [i.to_py_obj for i in self.children],
             }
         )
         return data
 
     @classmethod
-    def from_json_dict(cls, data: Dict[str, Any]) -> Self:
+    def from_py_obj(cls, data: Dict[str, Any]) -> Self:
         data.update(
             {
                 "time_frames": [
@@ -47,7 +48,7 @@ class Task:
                     )
                     for i, j in data["time_frames"]
                 ],
-                "children": [cls.from_json_dict(i) for i in data["children"]]
+                "children": [cls.from_py_obj(i) for i in data["children"]],
             }
         )
         return cls(**data)

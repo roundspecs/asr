@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 from models.activity import Activity
 
 DATE_FORMAT = "%Y-%m-%d"
-DB_DIR = "db"
+DB_DIR = "/home/seven89/Documents/asr-db"
 
 
 class Journal:

@@ -2,5 +2,14 @@
   "cSpell.words": [
     "journaling",
     "todos"
-  ]
+  ],
+  "files.exclude": {
+    ".gitignore": true,
+    ".venv": true,
+    ".vscode": true,
+    "asr.egg-info": true,
+    "LICENSE": true,
+    "requirements.txt": true,
+    "setup.py": true
+  }
 }

@@ -46,3 +46,8 @@ class TaskList:
 
     def tree_str(self):
         return "\n".join([t.tree_str() for t in self.tasks])
+
+    def remove_task_as_emmet(self, emmet_abbr: str) -> Self:
+        self.tasks = [t for t in self.tasks if t.name != emmet_abbr]
+        self.save()
+        return TaskList([Task(emmet_abbr)])

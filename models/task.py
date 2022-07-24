@@ -55,3 +55,8 @@ class Task:
 
     def tree_str(self):
         return f"{'🗹' if self.isDone else '☐'} {self.name}"
+    
+    def path(self):
+        if self.parent == None:
+            return self.name
+        return self.parent.path() + "/" + self.name

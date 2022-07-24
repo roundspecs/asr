@@ -34,7 +34,7 @@ class Journal:
             os.makedirs(month_dir)
 
     @classmethod
-    def from_json_file(cls, date: datetime.date):
+    def load(cls, date: datetime.date):
         filepath = os.path.join(DB_DIR, "journal", str(date.year), str(date.month), f"{date.day}.json")
         cls.create_month_dir_if_does_not_exist(date)
         if not os.path.exists(cls.filepath):

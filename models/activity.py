@@ -6,7 +6,9 @@ TIME_FORMAT = "%H:%M:%S"
 
 
 class Activity:
-    def __init__(self, name: str, start: datetime.time, end: datetime.time | None = None) -> None:
+    def __init__(
+        self, name: str, start: datetime.time, end: datetime.time | None = None
+    ) -> None:
         self.name = name
         self.start = start
         self.end = end
@@ -28,7 +30,9 @@ class Activity:
         data.update(
             {
                 "start": datetime.datetime.strptime(data["start"], TIME_FORMAT).time(),
-                "end": datetime.datetime.strptime(data["end"], TIME_FORMAT).time() if data["end"] else None,
+                "end": datetime.datetime.strptime(data["end"], TIME_FORMAT).time()
+                if data["end"]
+                else None,
             }
         )
         return cls(**data)

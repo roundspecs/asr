@@ -1,6 +1,6 @@
 import typer
 from models.journal import Journal
-
+from rich import print
 from models.task_list import TaskList
 
 app = typer.Typer()

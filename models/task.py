@@ -1,6 +1,7 @@
 from typing import Any, Dict, List
 from datetime import datetime
 from typing_extensions import Self
+from rich.tree import Tree
 
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -54,7 +55,7 @@ class Task:
         return cls(**data)
 
     def tree_str(self):
-        return f"{'🗹' if self.isDone else '☐'} {self.name}"
+        return Tree(f"{'✅' if self.isDone else '⬛'} {self.name}")
 
     def path(self):
         if self.parent == None:

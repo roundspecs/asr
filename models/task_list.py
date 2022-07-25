@@ -4,6 +4,7 @@ import os
 from typing import List
 from typing_extensions import Self
 from models.task import Task
+from rich.tree import Tree
 
 
 DB_DIR = "/home/seven89/Documents/asr-db"
@@ -46,7 +47,10 @@ class TaskList:
         return added_task_list
 
     def tree_str(self):
-        return "\n".join([t.tree_str() for t in self.tasks])
+        tree = Tree("📝 Task list")
+        for task in self.tasks:
+            tree.add(task.tree_str())
+        return tree
 
     def remove_task_as_emmet(self, emmet_abbr: str) -> Self:
         self.tasks = [t for t in self.tasks if t.name != emmet_abbr]

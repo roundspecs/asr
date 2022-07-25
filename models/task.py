@@ -4,6 +4,8 @@ from typing_extensions import Self
 from rich.tree import Tree
 
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+EMOJI_INCOMPLETE_TASK = '⬛'
+EMOJI_COMPLETE_TASK = '✅'
 
 
 class Task:
@@ -55,7 +57,7 @@ class Task:
         return cls(**data)
 
     def tree_str(self):
-        return Tree(f"{'✅' if self.isDone else '⬛'} {self.name}")
+        return Tree(f"{EMOJI_COMPLETE_TASK if self.isDone else EMOJI_INCOMPLETE_TASK} {self.name}")
 
     def path(self):
         if self.parent == None:
